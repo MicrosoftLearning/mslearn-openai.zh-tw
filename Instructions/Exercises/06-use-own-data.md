@@ -113,6 +113,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 1. 在 [上傳檔案]** **頁面，上傳您下載的 PDF，然後選取 [下一步]****。
 1. 在 [資料管理]** **頁面上，從下拉式清單中選取 [關鍵字]** **搜尋類型，然後選取 [下一步]****。
+1. 在 [資料連線]**** 頁面上選取 [API 金鑰]****。
 1. 在 [檢閱並完成]** **頁面上，選取 [儲存並關閉]****，以新增您的資料。 這可能需要幾分鐘的時間，在此期間，視窗必須保持開啟。 完成後，您會看到 [設定]** ** 一節中指定的資料來源、搜尋資源和索引。
 
     > **秘訣**：有時候，新搜尋索引與 Azure OpenAI Studio 之間的連線時間太久。 如果您已等候幾分鐘，但仍未連線，請在 Azure 入口網站檢查您的 AI 搜尋資源。 如果您看到已完成的索引，可以在 Azure OpenAI Studio 中斷資料連線，然後指定 Azure AI 搜尋服務資料來源，並選取新的索引，重新新增它。
@@ -143,7 +144,7 @@ What are some facts about New York?
 
 現在來探索，在使用 Azure OpenAI 服務 SDK 的應用程式中，使用自己的資料的情況。 您將使用 Visual Studio Code 開發應用程式。 您應用程式的程式碼檔案已在 GitHub 存放庫中提供。
 
-> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio 程式碼中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
+> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
 2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
