@@ -43,14 +43,13 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 1. 在 Azure OpenAI 資源的 [概觀]**** 頁面上，使用 [移至 Azure OpenAI Studio]**** 按鈕在新瀏覽器索引標籤中開啟 Azure OpenAI Studio。
 2. 在 Azure OpenAI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
-    - **模型**：gpt-35-turbo-16k *(如果 16k 模型無法使用，請選擇 gpt-35-turbo)*
+    - **部署名稱**：*您選擇的唯一名稱*
+    - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
     - **模型版本**：自動更新為預設值
-    - **部署名稱**：*您選擇的唯一名稱。您稍後會在實驗室中使用此名稱。*
-    - **進階選項**
-        - **內容篩選**：預設
-        - **部署類型**：標準
-        - **每分鐘權杖速率限制**：5K\*
-        - **啟用動態配額**：啟用
+    - **部署類型**：標準
+    - **每分鐘權杖速率限制**：5K\*
+    - **內容篩選**：預設
+    - **啟用動態配額**：啟用
 
     > \* 每分鐘 5,000 個權杖的速率限制已足以完成此練習，同時還有剩餘容量可讓其他人使用相同的訂用帳戶。
 
@@ -58,7 +57,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 您將使用 Visual Studio Code 開發 Azure OpenAI 應用程式。 您應用程式的程式碼檔案已在 GitHub 存放庫中提供。
 
-> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio 程式碼中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
+> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
 2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
