@@ -43,14 +43,13 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 1. 在 Azure OpenAI 資源的 [概觀]**** 頁面上，使用 [移至 Azure OpenAI Studio]**** 按鈕在新瀏覽器索引標籤中開啟 Azure OpenAI Studio。
 2. 在 Azure OpenAI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
-    - **模型**：gpt-35-turbo-16k *(如果 16k 模型無法使用，請選擇 gpt-35-turbo)*
+    - **部署名稱**：*您選擇的唯一名稱*
+    - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
     - **模型版本**：自動更新為預設值
-    - **部署名稱**：*您選擇的唯一名稱。您稍後會在實驗室中使用此名稱。*
-    - **進階選項**
-        - **內容篩選**：預設
-        - **部署類型**：標準
-        - **每分鐘權杖速率限制**：5K\*
-        - **啟用動態配額**：啟用
+    - **部署類型**：標準
+    - **每分鐘權杖速率限制**：5K\*
+    - **內容篩選**：預設
+    - **啟用動態配額**：啟用
 
     > \* 每分鐘 5,000 個權杖的速率限制已足以完成此練習，同時還有剩餘容量可讓其他人使用相同的訂用帳戶。
 
@@ -60,7 +59,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 1. 在位於 `https://oai.azure.com` 的 **Azure OpenAI Studio** 中，於 [遊樂場]**** 區段中，選取 [聊天]**** 頁面。 [聊天]**** 遊樂場頁面包含三個主要區段：
     - **設定** - 用來設定模型回應的內容。
-    - **聊天工作階段** - 用來提交聊天訊息和檢視回應。
+    - **聊天工作階段** - 用於提交聊天訊息和檢視回應。
     - **組態** - 用來設定模型部署的設定。
 2. 在 [組態]**** 區段中，確定已選取您的模型部署。
 3. 在 [設定]**** 區域中，將系統訊息設定為 `You are a programming assistant helping write code` 並套用變更。
@@ -116,7 +115,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 現在讓我們來探索如何建置使用 Azure OpenAI 服務來產生程式碼的自訂應用程式。 您將使用 Visual Studio Code 開發應用程式。 您應用程式的程式碼檔案已在 GitHub 存放庫中提供。
 
-> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio 程式碼中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
+> **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
 2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
@@ -130,7 +129,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 ## 設定您的應用程式
 
-已提供 C# 和 Python 的應用程式，以及您將用來測試摘要的範例文字檔案。 這兩個應用程式都有相同的功能。 首先，您將完成應用程式的一些重要部分，以開始使用您的 Azure OpenAI 資源。
+已同時提供 C# 和 Python 的應用程式，以及您將用於測試摘要的範例文字檔案。 這兩個應用程式都有相同的功能。 首先，您將完成應用程式的一些重要部分，以開始使用您的 Azure OpenAI 資源。
 
 1. 在 Visual Studio Code 的 [總管]**** 窗格中，瀏覽至 [Labfiles/04-code-generation]**** 資料夾，然後根據您的語言偏好設定展開 [CSharp]**** 或 [Python]**** 資料夾。 每個資料夾都包含應用程式的特定語言檔案，您將在其中整合 Azure OpenAI 功能。
 2. 以滑鼠右鍵按一下包含程式碼檔案的 [CSharp]**** 或 [Python]**** 資料夾，然後開啟整合式終端。 然後，針對您的語言喜好設定執行適當的命令，以安裝 Azure OpenAI SDK 套件：
@@ -147,12 +146,12 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
     pip install openai==1.13.3
     ```
 
-3. 在 [總管]**** 窗格中的 [CSharp]**** 或 [Python]**** 資料夾中，開啟您慣用語言的組態檔
+3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
 
     - **C#**：appsettings.json
     - **Python**：.env
     
-4. 更新組態值以包含：
+4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
     - 您為模型部署指定的**部署名稱** (可在 Azure OpenAI Studio 的 [部署]**** 頁面中取得)。
 5. 儲存組態檔。
