@@ -39,17 +39,19 @@ lab:
 
 ## 部署模型
 
-Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓您用來部署、管理及探索模型。 您將使用 Azure OpenAI Studio 來部署模型，以開始探索 Azure OpenAI。
+Azure 提供名為 **Azure AI Studio** 的 Web 入口網站，可用於部署、管理和探索模型。 使用 Azure AI Studio 來部署模型，即可開始探索 Azure OpenAI。
 
-1. 在 Azure OpenAI 資源的 [概觀]**** 頁面上，使用 [移至 Azure OpenAI Studio]**** 按鈕在新瀏覽器索引標籤中開啟 Azure OpenAI Studio。
-2. 在 Azure OpenAI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+> **注意**：當使用 Azure AI Studio 時，可能會顯示建議您要執行之工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
+
+1. 在 Azure 入口網站，在 Azure OpenAI 資源的**概述**頁面，向下捲動到**開始**區段，然後選取按鈕前往 **AI Studio**。
+1. 在 Azure OpenAI Studio 的左側窗格，選取**部署**頁面並檢視現有模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
     - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
-    - **模型版本**：自動更新為預設值
+    - **模型版本**：*使用預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
     - **內容篩選**：預設
-    - **啟用動態配額**：啟用
+    - **啟用動態配額**：停用
 
     > \* 每分鐘 5,000 個權杖的速率限制已足以完成此練習，同時還有剩餘容量可讓其他人使用相同的訂用帳戶。
 
@@ -57,12 +59,11 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 一開始，我們先在聊天遊樂場，探索一些提示工程技術。
 
-1. 在位於 `https://oai.azure.com` 的 **Azure OpenAI Studio** 中，於 [遊樂場]**** 區段中，選取 [聊天]**** 頁面。 [聊天]**** 遊樂場頁面包含三個主要區段：
-    - **設定** - 用來設定模型回應的內容。
+1. 在 **[遊樂場]** 區段中，選取 **[聊天]** 頁面。 [聊天]**** 遊樂場頁面包含一列按鈕及兩個主要面板 (可能由右至左水平排列或由上至下垂直排列，依螢幕解析度而定)：
+    - ****[設定] - 用來選取您的部署、定義系統訊息，以及設定要與您的部署互動的參數。
     - **聊天工作階段** - 用於提交聊天訊息和檢視回應。
-    - **組態** - 用來設定模型部署的設定。
-2. 在 [組態]**** 區段中，確定已選取您的模型部署。
-3. 在 [設定]** **區域中，選取預設系統訊息範本，設定聊天工作階段的內容。 預設的系統訊息為，*您是可協助人員尋找資訊的 AI 助理*。
+2. 在 [部署]** **下，確定已選取 gpt-35-turbo-16k 模型部署。
+1. 檢閱預設的**系統訊息**，內容應該是 [您是可協助人員尋找資訊的 AI 助理]**。
 4. 在 [聊天工作階段]**** 中，提交下列查詢：
 
     ```prompt
@@ -81,7 +82,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
 5. 在 [設定]** **區段中，將系統訊息變更為 `You are a news aggregator that categorizes news articles.`
 
-6. 在新的系統訊息下方，在 [範例]** **區段中，選取 [新增]** **按鈕。 然後，新增下列範例。
+6. 在新的系統訊息下方，選取 [新增區段]**** 按鈕，然後選擇 [範例]****。 然後，新增下列範例。
 
     **使用者**：
     
@@ -120,13 +121,13 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
     From Robin Kline's history-making win to a full performance by none other than Casey Jensen herself, don't miss tomorrows rerun of all the festivities.
     ```
     
-    **助理：**
+    **小幫手**：
     
     ```prompt
     Entertainment
     ```
 
-8. 使用 [設定]** **區段頂端的 [套用變更]** **按鈕來更新系統訊息。
+8. 使用 [設定] 區段頂端的 **** [套用變更****] 按鈕來儲存變更。
 
 9. 在 [聊天工作階段]**** 區段中，重新提交下列提示：
 
@@ -144,7 +145,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
 
     較具體的系統訊息結合一些預期查詢和回應的範例，會為結果產生一致的格式。
 
-10. 在 [設定]** **區段中，將系統訊息變更回預設範本，內容應該是 `You are an AI assistant that helps people find information.` 而且沒有範例。 接著套用變更。
+10. 將系統訊息變更回預設範本，內容應該是 `You are an AI assistant that helps people find information.` 而且沒有範例。 接著套用變更。
 
 11. 在 [聊天工作階段]**** 區段中，提交下列提示：
 
@@ -209,7 +210,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
     
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
-    - 您為模型部署指定的**部署名稱** (可在 Azure OpenAI Studio 的 [部署]**** 頁面中取得)。
+    - 您為模型部署指定的**部署名稱** (可在 Azure AI Studio 的 [部署]**** 頁面取得)。
 5. 儲存組態檔。
 
 ## 新增程式碼以使用 Azure OpenAI 服務
@@ -339,6 +340,8 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
     - It specializes in elephants 
     - Call for donations to be given at our website
     ```
+
+    > **提示**：您可能會在 VM 中發現自動輸入不適用於多行提示。 如果這是您的問題，請複製整個提示，然後將它貼到 Visual Studio Code。
 
 1. 觀察輸出。 此時，您可能會看到包含特定動物的電子郵件格式，以及捐款呼籲。
 1. 接下來，輸入下列提示，額外指定內容：
