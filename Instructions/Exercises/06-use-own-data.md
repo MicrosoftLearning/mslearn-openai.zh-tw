@@ -78,6 +78,7 @@ Azure OpenAI 服務可讓您搭配基礎 LLM 的智慧使用自己的資料。 �
 1. 在 Azure 入口網站中，瀏覽至 Azure OpenAI 資源。 接著，使用連結來開啟 ** Azure AI Studio**中的資源。
 1. 在 Azure AI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 然後，使用下列設定建立 **text-embedding-ada-002** 模型的新基本模型部署：
     - **部署名稱**：text-embedding-ada-002
+    - **模型**：text-embedding-ada:002
     - **模型版本**：*預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
