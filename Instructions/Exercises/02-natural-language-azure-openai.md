@@ -39,17 +39,19 @@ lab:
 
 ## 部署模型
 
-Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓您用來部署、管理及探索模型。 您將使用 Azure OpenAI Studio 來部署模型，以開始探索 Azure OpenAI。
+Azure 提供名為 **Azure AI Studio** 的網頁型入口網站，可讓您用來部署、管理及探索模型。 使用 Azure AI Studio 來部署模型，即可開始探索 Azure OpenAI。
 
-1. 在 Azure OpenAI 資源的 [概觀]**** 頁面上，使用 [移至 Azure OpenAI Studio]**** 按鈕在新瀏覽器索引標籤中開啟 Azure OpenAI Studio。
-2. 在 Azure OpenAI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+> **注意**：使用 Azure AI Studio 時，可能會顯示建議您要執行之工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
+
+1. 在 Azure 入口網站 中，於 Azure OpenAI 資源的 [概觀]**** 頁面上，向下捲動至 [開始使用]**** 區段，然後選取按鈕以移至 **AI Studio**。
+1. 在 Azure AI Studio 的左側窗格中，選取 [部署]**** 頁面，然後檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
     - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
-    - **模型版本**：自動更新為預設值
+    - **模型版本**：*使用預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
     - **內容篩選**：預設
-    - **啟用動態配額**：啟用
+    - **啟用動態配額**：已停用
 
     > \* 每分鐘 5,000 個權杖的速率限制已足以完成此練習，同時還有剩餘容量可讓其他人使用相同的訂用帳戶。
 
@@ -95,7 +97,7 @@ Azure OpenAI 提供名為 **Azure OpenAI Studio** 的 Web 入口網站，可讓�
     
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
-    - 您為模型部署指定的**部署名稱** (可在 Azure OpenAI Studio 的 [部署]**** 頁面中取得)。
+    - 您為模型部署指定的**部署名稱** (可在 Azure AI Studio 的 [部署]**** 頁面中取得)。
 5. 儲存組態檔。
 
 ## 新增程式碼以使用 Azure OpenAI 服務

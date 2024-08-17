@@ -16,7 +16,7 @@ Azure OpenAI 服務包含名為 DALL-E 的影像產生模型。 您可以使用�
 您必須先在 Azure 訂用帳戶中佈建 Azure OpenAI 資源，才能使用 Azure OpenAI 模型來產生影像。 資源必須位於支援 DALL-E 模型的區域中。
 
 1. 登入 **Azure 入口網站**，網址為：`https://portal.azure.com`。
-2. 使用下列設定建立 **Azure OpenAI** 資源：
+1. 使用下列設定建立 **Azure OpenAI** 資源：
     - **訂用帳戶**：*選取已核准存取 Azure OpenAI 服務 (包括 DALL-E) 的 Azure 訂用帳戶*
     - **資源群組**：*選擇或建立資源群組*
     - **區域**：*選擇**美國東部**或**瑞典中部***\*
@@ -25,21 +25,29 @@ Azure OpenAI 服務包含名為 DALL-E 的影像產生模型。 您可以使用�
 
     > \* DALL-E 3 模型僅適用於**美國東部**和**瑞典中部**區域的 Azure OpenAI 服務資源。
 
-3. 等候部署完成。 然後移至 Azure 入口網站中已部署的 Azure OpenAI 資源。
+1. 等候部署完成。 然後移至 Azure 入口網站中已部署的 Azure OpenAI 資源。
+1. 在 Azure OpenAI 資源的 [概觀]**** 頁面上，向下捲動至 [開始使用]**** 區段，然後選取按鈕以移至 **AI Studio**。
+1. 在 Azure AI Studio 的左側窗格中，選取 [部署]**** 頁面，然後檢視現有的模型部署。 如果您還未擁有 DALL-E 3，請使用下列設定建立 **dall-e-3** 模型的新部署：
+    - **部署名稱**：dalle3
+    - **模型版本**：*使用預設版本*
+    - **部署類型**：標準
+    - **容量單位**：1K
+    - **內容篩選**：預設
+    - **啟用動態配額**：已停用
+1. 部署一個之後，請瀏覽回左窗格中的 [影像]**** 頁面。
 
-## 探索在 DALL-E 遊樂場中的影像產生
+## 在影像遊樂場探索影像產生
 
-您可以使用 **Azure OpenAI Studio** 中的 DALL-E 遊樂場來試驗影像產生。
+您可以使用 **Azure AI Studio** 中的影像遊樂場來進行影像產生實驗。
 
-1. 在 Azure 入口網站中之 Azure OpenAI 資源的 [概觀]**** 頁面上使用 [探索]**** 按鈕，以在新瀏覽器分頁中開啟 Azure OpenAI Studio。或者直接在 `https://oai.azure.com` 瀏覽至 [Azure OpenAI Studio](https://oai.azure.com)。
-2. 在 [遊樂場]**** 區段中，選取 [DALL-E]**** 遊樂場。 系統會自動建立名為 *Dalle3* 的 DALL-E 模型部署。
-3. 在 [提示]**** 方塊中，輸入您想要產生的影像描述。 例如 `An elephant on a skateboard` 然後選取 [產生]**** 並檢視產生的影像。
+1. 在 [影像遊樂場]**** 區段中，應會自動選取 DALL-E 3 的部署。 如果沒有，請從部署下拉式清單中予以選取。
+1. 在 [提示]**** 方塊中，輸入您想要產生的影像描述。 例如 `An elephant on a skateboard` 然後選取 [產生]**** 並檢視產生的影像。
 
-    ![在 Azure OpenAI Studio 中具有個產生影像的 DALL-E 遊樂場。](../media/dall-e-playground.png)
+    ![在 Azure AI Studio 中具有一個產生影像的影像遊樂場。](../media/images-playground.png)
 
-4. 修改提示以提供更具體的描述。 例如 `An elephant on a skateboard in the style of Picasso` 。 然後產生新影像並檢閱結果。
+1. 修改提示以提供更具體的描述。 例如 `An elephant on a skateboard in the style of Picasso` 。 然後產生新影像並檢閱結果。
 
-    ![在 Azure OpenAI Studio 中具有兩個產生影像的 DALL-E 遊樂場。](../media/dall-e-playground-new-image.png)
+    ![在 Azure AI Studio 中具有兩個產生影像的影像遊樂場。](../media/images-playground-new-style.png)
 
 ## 使用 REST API 來產生影像
 
@@ -87,6 +95,8 @@ Azure OpenAI 服務提供 REST API，可讓您用來提交內容產生的提示�
     - 程式碼會向服務的端點 (包括標頭中服務的金鑰) 提出 HTTPS 要求，。 這兩個值都是從組態檔取得。
     - 要求包含一些參數，包括影像應根據的提示、要產生影像的數量以及已產生影像的大小。
     - 回應包括 DALL-E 模型從使用者提供的提示中推斷以使其更具描述性的已修改提示，以及已產生影像的 URL。
+    
+    > **重要**：如果您將部署命名為建議的 *dalle3* 以外的任何名稱，則必須更新程式碼才能使用部署的名稱。
 
 ### 執行應用程式
 
