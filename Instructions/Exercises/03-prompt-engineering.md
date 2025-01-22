@@ -39,12 +39,12 @@ lab:
 
 ## 部署模型
 
-Azure 提供名為 **Azure AI Studio** 的 Web 入口網站，可用於部署、管理和探索模型。 使用 Azure AI Studio 來部署模型，即可開始探索 Azure OpenAI。
+Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，可用來部署、管理並探索模型。 使用 Azure AI Foundry 入口網站來部署模型，即可開始探索 Azure OpenAI。
 
-> **注意**：當使用 Azure AI Studio 時，可能會顯示建議您要執行之工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
+> **備註**：當使用 Azure AI Foundry 入口網站時，可能會顯示建議您要執行工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
 
-1. 在 Azure 入口網站，在 Azure OpenAI 資源的**概述**頁面，向下捲動到**開始**區段，然後選取按鈕前往 **AI Studio**。
-1. 在 Azure OpenAI Studio 的左側窗格，選取**部署**頁面並檢視現有模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+1. 在 Azure 入口網站，請到 Azure OpenAI 資源的**概觀**頁面，將畫面向下捲動到**入門**區段，然後選取按鈕，即可前往 **AI Foundry 入口網站** (之前稱為 AI Studio)。
+1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
     - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
     - **模型版本**：*使用預設版本*
@@ -200,7 +200,7 @@ Azure 提供名為 **Azure AI Studio** 的 Web 入口網站，可用於部署、
     **Python**：
 
     ```
-    pip install openai==1.13.3
+    pip install openai==1.55.3
     ```
 
 3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
@@ -210,7 +210,7 @@ Azure 提供名為 **Azure AI Studio** 的 Web 入口網站，可用於部署、
     
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
-    - 您為模型部署指定的**部署名稱** (可在 Azure AI Studio 的 [部署]**** 頁面取得)。
+    - 針對模型部署，您可以指定的**部署名稱** (可在 Azure AI Foundry 入口網站的 **[部署]** 頁面取得)。
 5. 儲存組態檔。
 
 ## 新增程式碼以使用 Azure OpenAI 服務
