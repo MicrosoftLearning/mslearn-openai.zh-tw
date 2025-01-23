@@ -73,10 +73,10 @@ Azure OpenAI 服務可讓您搭配基礎 LLM 的智慧使用自己的資料。 �
 - 文字內嵌模型，其可將摺頁冊中的文字 *向量化*，以便有效率地編製索引，用於作為提示基礎。
 - GPT 模型，應用程式可使用該模型，針對以資料為依據基礎的提示產生回應。
 
-若要部署這些模型，請使用 AI Studio。
+若要部署這些模型，請使用 AI Foundry。
 
-1. 在 Azure 入口網站中，瀏覽至 Azure OpenAI 資源。 接著，使用連結來開啟 ** Azure AI Studio**中的資源。
-1. 在 Azure AI Studio 的 [部署]**** 頁面上，檢視現有的模型部署。 然後，使用下列設定建立 **text-embedding-ada-002** 模型的新基本模型部署：
+1. 在 Azure 入口網站中，瀏覽至 Azure OpenAI 資源。 接著，使用連結來開啟 **Azure AI Foundry 入口網站**中的資源。
+1. 在 Azure AI Foundry 入口網站的**部署**頁面上，檢視現有的模型部署。 然後，使用下列設定建立 **text-embedding-ada-002** 模型的新基本模型部署：
     - **部署名稱**：text-embedding-ada-002
     - **模型**：text-embedding-ada:002
     - **模型版本**：*預設版本*
@@ -151,7 +151,7 @@ Azure OpenAI 服務可讓您搭配基礎 LLM 的智慧使用自己的資料。 �
     **Python**：
 
     ```
-    pip install openai==1.13.3
+    pip install openai==1.55.3
     ```
 
 3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
@@ -161,7 +161,7 @@ Azure OpenAI 服務可讓您搭配基礎 LLM 的智慧使用自己的資料。 �
     
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
-    - 您給 gpt-35-turbo 模型部署指定的**部署名稱** (可在 Azure AI Studio 的 **[部署]** 分頁上找到)。
+    - 您給 gpt-35-turbo 模型部署指定的**部署名稱** (可在Azure AI Foundry 入口網站的 **[部署]** 分頁上找到)。
     - 搜尋服務的端點 (Azure 入口網站中搜尋資源概觀頁面的 **URL** 值)。
     - 搜尋資源的 **金鑰** (可在 Azure 入口網站中搜尋資源的 [金鑰]** **頁面找到 - 您可以使用其中一個系統管理金鑰)
     - 搜尋索引的名稱 (應該是 `margies-index`)。
