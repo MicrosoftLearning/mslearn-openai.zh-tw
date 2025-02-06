@@ -11,6 +11,17 @@ lab:
 
 此練習大約需要 **30** 分鐘。
 
+## 複製本課程的存放庫
+
+如果您尚未完成此步驟，您必須複製本課程的程式碼存放庫：
+
+1. 啟動 Visual Studio Code。
+2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
+3. 複製存放庫後，請在 Visual Studio Code 中開啟此資料夾。
+4. 等候其他檔案安裝以支援存放庫中的 C# 程式碼專案。
+
+    > **注意**：如果系統提示您新增必要的資產來組建和偵錯，請選取 [現在不要]****。
+
 ## 佈建 Azure OpenAI 資源
 
 如果您還未擁有，請在 Azure 訂用帳戶中佈建 Azure OpenAI 資源。
@@ -114,13 +125,8 @@ az cognitiveservices account deployment create \
 
     ```csharp
     // Configure the Azure OpenAI client
-       AzureOpenAIClient azureClient = new (new Uri(oaiEndpoint), new ApiKeyCredential(oaiKey));
-        ChatClient chatClient = azureClient.GetChatClient(oaiDeploymentName);
-        ChatCompletion completion = chatClient.CompleteChat(
-        [
-        new SystemChatMessage(systemMessage),
-        new UserChatMessage(userMessage),
-        ]);
+    AzureOpenAIClient azureClient = new (new Uri(oaiEndpoint), new ApiKeyCredential(oaiKey));
+    ChatClient chatClient = azureClient.GetChatClient(oaiDeploymentName);
     ```
 
     **Python**：application.py
@@ -140,8 +146,21 @@ az cognitiveservices account deployment create \
 
     ```csharp
     // Get response from Azure OpenAI
-    Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
+    ChatCompletionOptions chatCompletionOptions = new ChatCompletionOptions()
+    {
+        Temperature = 0.7f,
+        MaxOutputTokenCount = 800
+    };
 
+    ChatCompletion completion = chatClient.CompleteChat(
+        [
+            new SystemChatMessage(systemMessage),
+            new UserChatMessage(userMessage)
+        ],
+        chatCompletionOptions
+    );
+
+    Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
     ```
 
     **Python**：application.py

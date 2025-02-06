@@ -59,12 +59,12 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
 一開始，我們先在聊天遊樂場，探索一些提示工程技術。
 
-1. 在 **[遊樂場]** 區段中，選取 **[聊天]** 頁面。 [聊天]**** 遊樂場頁面包含一列按鈕及兩個主要面板 (可能由右至左水平排列或由上至下垂直排列，依螢幕解析度而定)：
-    - ****[設定] - 用來選取您的部署、定義系統訊息，以及設定要與您的部署互動的參數。
-    - **聊天工作階段** - 用於提交聊天訊息和檢視回應。
-2. 在 [部署]** **下，確定已選取 gpt-35-turbo-16k 模型部署。
-1. 檢閱預設的**系統訊息**，內容應該是 [您是可協助人員尋找資訊的 AI 助理]**。
-4. 在 [聊天工作階段]**** 中，提交下列查詢：
+1. 在左側邊窗格的 **[遊樂場]** 區段，選取 **[聊天]** 頁面。 [聊天]**** 遊樂場頁面包含一列按鈕及兩個主要面板 (可能由右至左水平排列或由上至下垂直排列，依螢幕解析度而定)：
+    - ****[設定] 可用來選取部署、定義系統訊息，同時設定部署時想要互動的參數。
+    - **聊天記錄** 可用於送出聊天訊息，同時檢視回應。
+2. 請到 [部署]**** 那邊，確定已選取 gpt-35-turbo-16k 模型部署。
+1. 檢閱預設的系統訊息，內容應包含以下勾選部署下方文字框內的訊息 *[您是 AI 助理，可協助人員尋找資訊的]*。
+4. 請到 **[聊天記錄]** 那邊，送出以下查詢：
 
     ```prompt
     What kind of article is this?
@@ -127,9 +127,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     Entertainment
     ```
 
-8. 使用 [設定] 區段頂端的 **** [套用變更****] 按鈕來儲存變更。
+8. 使用** [設定] **區段中 [系統消息] 文字框中的 **[套用變更]** 按鈕，即可儲存變更。
 
-9. 在 [聊天工作階段]**** 區段中，重新提交下列提示：
+9. 請到** [聊天記錄]** 區段那邊，重新提交下列提示：
 
     ```prompt
     What kind of article is this?
@@ -147,7 +147,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
 10. 將系統訊息變更回預設範本，內容應該是 `You are an AI assistant that helps people find information.` 而且沒有範例。 接著套用變更。
 
-11. 在 [聊天工作階段]**** 區段中，提交下列提示：
+11. 請到 **[聊天記錄]** 區段那邊，送出下列提示：
 
     ```prompt
     # 1. Create a list of animals
@@ -359,7 +359,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     - Rescue name is Contoso 
     - It specializes in elephants, as well as zebras and giraffes 
     - Call for donations to be given at our website 
-    \n Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
+    Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
     ```
 
 1. 觀察輸出，查看電子郵件如何根據您的清晰指示變更。
@@ -378,7 +378,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     - Rescue name is Contoso 
     - It specializes in elephants, as well as zebras and giraffes 
     - Call for donations to be given at our website 
-    \n Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
+    Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
     ```
 
 1. 觀察輸出。 此時您可能會看到類似格式的電子郵件，但語調比較輕鬆隨性。 您甚至可能會看到內容包含笑話！
