@@ -43,8 +43,6 @@ Azure OpenAI 服務包含名為 DALL-E 的影像產生模型。 您可以使用�
 1. 在 [影像遊樂場]**** 區段中，應會自動選取 DALL-E 3 的部署。 如果沒有，請從部署下拉式清單中予以選取。
 1. 在 [提示]**** 方塊中，輸入您想要產生的影像描述。 例如 `An elephant on a skateboard` 然後選取 [產生]**** 並檢視產生的影像。
 
-    ![在 Azure AI Foundry 入口網站中具有一個產生影像的影像遊樂場。](../media/images-playground.png)
-
 1. 修改提示以提供更具體的描述。 例如 `An elephant on a skateboard in the style of Picasso` 。 然後產生新影像並檢閱結果。
 
     ![在 Azure AI Foundry 入口網站中具有兩個產生影像的影像遊樂場。](../media/images-playground-new-style.png)
