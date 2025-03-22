@@ -1,6 +1,7 @@
 ---
 lab:
   title: 實作如何搭配 Azure OpenAI 服務使用檢索增強生成 (RAG)
+  status: new
 ---
 
 # 實作搭配 Azure OpenAI 服務使用擷取擴增世代 (RAG)

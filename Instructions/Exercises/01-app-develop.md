@@ -1,6 +1,7 @@
 ---
 lab:
   title: 使用 Azure OpenAI 服務，開發應用程式
+  status: new
 ---
 
 # 使用 Azure OpenAI 服務，開發應用程式

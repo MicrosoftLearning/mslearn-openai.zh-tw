@@ -1,6 +1,7 @@
 ---
 lab:
   title: 使用 Azure OpenAI 服務產生並改善程式碼
+  status: stale
 ---
 
 # 使用 Azure OpenAI 服務產生並改善程式碼
