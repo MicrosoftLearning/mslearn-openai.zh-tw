@@ -45,9 +45,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **備註**：當使用 Azure AI Foundry 入口網站時，可能會顯示建議您要執行工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
 
 1. 在 Azure 入口網站，請到 Azure OpenAI 資源的**概觀**頁面，將畫面向下捲動到**入門**區段，然後選取按鈕，即可前往 **AI Foundry 入口網站** (之前稱為 AI Studio)。
-1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定，為**gpt-4o**模型建立的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
-    - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
+    - **模型**：gpt-4o
     - **模型版本**：*使用預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
@@ -63,9 +63,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 1. 在左側邊窗格的 **[遊樂場]** 區段，選取 **[聊天]** 頁面。 [聊天]**** 遊樂場頁面包含一列按鈕及兩個主要面板 (可能由右至左水平排列或由上至下垂直排列，依螢幕解析度而定)：
     - ****[設定] 可用來選取部署、定義系統訊息，同時設定部署時想要互動的參數。
     - **聊天記錄** 可用於送出聊天訊息，同時檢視回應。
-2. 請到 [部署]**** 那邊，確定已選取 gpt-35-turbo-16k 模型部署。
+1. 請到 **[部署]** 那邊，先確定已選取 gpt-4o 模型部署。
 1. 檢閱預設的系統訊息，內容應包含以下勾選部署下方文字框內的訊息 *[您是 AI 助理，可協助人員尋找資訊的]*。
-4. 請到 **[聊天記錄]** 那邊，送出以下查詢：
+1. 請到 **[聊天記錄]** 那邊，送出以下查詢：
 
     ```prompt
     What kind of article is this?
@@ -81,12 +81,12 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     回應會提供文章的說明。 不過，假設您想要更具體的文章分類格式。
 
-5. 在 [設定]** **區段中，將系統訊息變更為 `You are a news aggregator that categorizes news articles.`
+1. 在 [設定]** **區段中，將系統訊息變更為 `You are a news aggregator that categorizes news articles.`
 
-6. 在新的系統訊息下方，選取 [新增區段]**** 按鈕，然後選擇 [範例]****。 然後，新增下列範例。
+1. 在新的系統訊息下方，選取 [新增區段]**** 按鈕，然後選擇 [範例]****。 然後，新增下列範例。
 
     **使用者**：
-    
+
     ```prompt
     What kind of article is this?
     ---
@@ -98,17 +98,17 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     
     The Chicago Cyclones' two hits came in the 2nd and the 5th innings but were unable to get the runner home to score.
     ```
-    
+
     **助理：**
-    
+
     ```prompt
     Sports
       ```
 
-7. 使用下列文字新增另一個範例。
+1. 使用下列文字新增另一個範例。
 
     **使用者**：
-    
+
     ```prompt
     Categorize this article:
     ---
@@ -121,16 +121,16 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     
     From Robin Kline's history-making win to a full performance by none other than Casey Jensen herself, don't miss tomorrows rerun of all the festivities.
     ```
-    
+
     **小幫手**：
-    
+
     ```prompt
     Entertainment
     ```
 
-8. 使用** [設定] **區段中 [系統消息] 文字框中的 **[套用變更]** 按鈕，即可儲存變更。
+1. 使用** [設定] **區段中 [系統消息] 文字框中的 **[套用變更]** 按鈕，即可儲存變更。
 
-9. 請到** [聊天記錄]** 區段那邊，重新提交下列提示：
+1. 請到** [聊天記錄]** 區段那邊，重新提交下列提示：
 
     ```prompt
     What kind of article is this?
@@ -146,9 +146,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     較具體的系統訊息結合一些預期查詢和回應的範例，會為結果產生一致的格式。
 
-10. 將系統訊息變更回預設範本，內容應該是 `You are an AI assistant that helps people find information.` 而且沒有範例。 接著套用變更。
+1. 將系統訊息變更回預設範本，內容應該是 `You are an AI assistant that helps people find information.` 而且沒有範例。 接著套用變更。
 
-11. 請到 **[聊天記錄]** 區段那邊，送出下列提示：
+1. 請到 **[聊天記錄]** 區段那邊，送出下列提示：
 
     ```prompt
     # 1. Create a list of animals
@@ -158,10 +158,10 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     模型可能會回應符合提示的答案，並分割為編號清單。 這是適當的回應，但假設您其實是想讓模型撰寫 Python 程式，執行您所述的工作呢？
 
-12. 將系統訊息變更為 `You are a coding assistant helping write python code.` 並套用變更。
-13. 將下列提示重新提交至模型：
+1. 將系統訊息變更為 `You are a coding assistant helping write python code.` 並套用變更。
+1. 將下列提示重新提交至模型：
 
-    ```
+    ```prompt
     # 1. Create a list of animals
     # 2. Create a list of whimsical names for those animals
     # 3. Combine them randomly into a list of 25 animal and name pairs
@@ -176,7 +176,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
-2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
+2. 開啟調色盤 (SHIFT+CTRL+P 或 **檢視** > **命令選擇區...**)，並執行 **Git: 複製**命令，將`https://github.com/MicrosoftLearning/mslearn-openai`存放庫複製到本機資料夾 (任一資料夾皆可)。
 3. 複製存放庫後，請在 Visual Studio Code 中開啟此資料夾。
 
     > **注意**：如果 Visual Studio Code 顯示快顯訊息，提示您信任您所開啟的程式碼，請按一下快顯項目中的 [是，我信任作者]**** 選項。
@@ -194,21 +194,21 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     **C#：**
 
-    ```
-    dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.14
+    ```powershell
+    dotnet add package Azure.AI.OpenAI --version 2.1.0
     ```
 
     **Python**：
 
-    ```
-    pip install openai==1.55.3
+    ```powershell
+    pip install openai==1.65.2
     ```
 
 3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
 
     - **C#**：appsettings.json
     - **Python**：.env
-    
+
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
     - 針對模型部署，您可以指定的**部署名稱** (可在 Azure AI Foundry 入口網站的 **[部署]** 頁面取得)。
@@ -225,6 +225,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     ```csharp
     // Add Azure OpenAI package
     using Azure.AI.OpenAI;
+    using OpenAI.Chat;
     ```
 
     **Python**：prompt-engineering.py
@@ -240,7 +241,8 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     ```csharp
     // Configure the Azure OpenAI client
-    OpenAIClient client = new OpenAIClient(new Uri(oaiEndpoint), new AzureKeyCredential(oaiKey));
+    AzureOpenAIClient azureClient = new (new Uri(oaiEndpoint), new ApiKeyCredential(oaiKey));
+    ChatClient chatClient = azureClient.GetChatClient(oaiDeploymentName);
     ```
 
     **Python**：prompt-engineering.py
@@ -260,20 +262,19 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     ```csharp
     // Format and send the request to the model
-    var chatCompletionsOptions = new ChatCompletionsOptions()
+    var chatCompletionsOptions = new ChatCompletionOptions()
     {
-        Messages =
-        {
-            new ChatRequestSystemMessage(systemMessage),
-            new ChatRequestUserMessage(userMessage)
-        },
         Temperature = 0.7f,
-        MaxTokens = 800,
-        DeploymentName = oaiDeploymentName
+        MaxOutputTokenCount = 800
     };
     
     // Get response from Azure OpenAI
-    Response<ChatCompletions> response = await client.GetChatCompletionsAsync(chatCompletionsOptions);
+    ChatCompletion response = await chatClient.CompleteChatAsync(
+        [
+            new SystemChatMessage(systemMessage),
+            new UserChatMessage(userMessage),
+        ],
+        chatCompletionsOptions);
     ```
 
     **Python**：prompt-engineering.py

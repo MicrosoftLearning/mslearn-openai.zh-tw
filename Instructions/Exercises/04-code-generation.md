@@ -45,9 +45,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **備註**：當使用 Azure AI Foundry 入口網站時，可能會顯示建議您要執行工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
 
 1. 在 Azure 入口網站，請到 Azure OpenAI 資源的**概觀**頁面，將畫面向下捲動到**入門**區段，然後選取按鈕，即可前往 **AI Foundry 入口網站** (之前稱為 AI Studio)。
-1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定，為**gpt-4o**模型建立的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
-    - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
+    - **模型**：gpt-4o
     - **模型版本**：*使用預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
@@ -67,7 +67,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 1. 在 [系統訊息]**** 區域中，將系統訊息設定為：`You are a programming assistant helping write code`，然後套用變更。
 1. 在 [聊天工作階段]**** 中，提交下列查詢：
 
-    ```
+    ```prompt
     Write a function in python that takes a character and a string as input, and returns how many times the character appears in the string
     ```
 
@@ -79,7 +79,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
 1. 接下來，讓我們來探索使用 AI 來了解程式碼。 以使用者訊息的形式提交下列提示。
 
-    ```
+    ```prompt
     What does the following function do?  
     ---  
     def multiply(a, b):  
@@ -105,11 +105,11 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     模型應該描述函式的作用，也就是使用迴圈將兩個數字相乘。
 
-7. 提交提示 `Can you simplify the function?`。
+1. 提交提示 `Can you simplify the function?`。
 
     模型應該撰寫函式的更簡單版本。
 
-8. 提交提示：`Add some comments to the function.`
+1. 提交提示：`Add some comments to the function.`
 
     模型會將註解新增至程式碼。
 
@@ -120,7 +120,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
-2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
+2. 開啟命令選擇區（SHIFT+CTRL+P 或 **View** > **命令選擇區...**），並執行 **Git: 複製** 命令，將`https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾（哪個資料夾都無所謂）。
 3. 複製存放庫後，請在 Visual Studio Code 中開啟此資料夾。
 
     > **注意**：如果 Visual Studio Code 顯示快顯訊息，提示您信任您所開啟的程式碼，請按一下快顯項目中的 [是，我信任作者]**** 選項。
@@ -138,21 +138,21 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     **C#：**
 
-    ```
-    dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.14
+    ```powershell
+    dotnet add package Azure.AI.OpenAI --version 2.1.0
     ```
 
     **Python**：
 
-    ```
-    pip install openai==1.55.3
+    ```powershell
+    pip install openai==1.65.2
     ```
 
 3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
 
     - **C#**：appsettings.json
     - **Python**：.env
-    
+
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
     - 針對模型部署，您可以指定的**部署名稱** (可在 Azure AI Foundry 入口網站的 **[部署]** 頁面取得)。
@@ -168,23 +168,19 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     ```csharp
     // Format and send the request to the model
-    var chatCompletionsOptions = new ChatCompletionsOptions()
+    var chatCompletionsOptions = new ChatCompletionOptions()
     {
-        Messages =
-        {
-            new ChatRequestSystemMessage(systemPrompt),
-            new ChatRequestUserMessage(userPrompt)
-        },
         Temperature = 0.7f,
-        MaxTokens = 1000,
-        DeploymentName = oaiDeploymentName
+        MaxOutputTokenCount = 800
     };
-
+    
     // Get response from Azure OpenAI
-    Response<ChatCompletions> response = await client.GetChatCompletionsAsync(chatCompletionsOptions);
-
-    ChatCompletions completions = response.Value;
-    string completion = completions.Choices[0].Message.Content;
+    ChatCompletion response = await chatClient.CompleteChatAsync(
+        [
+            new SystemChatMessage(systemPrompt),
+            new UserChatMessage(userPrompt),
+        ],
+        chatCompletionsOptions);
     ```
 
     **Python**：code-generation.py
@@ -205,7 +201,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     )
     ```
 
-4. 將變更儲存至程式碼檔案。
+1. 將變更儲存至程式碼檔案。
 
 ## 執行應用程式
 
@@ -249,7 +245,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     - **Python**：修正會在第 18 行和 31 行進行
 
     如果您以 Azure OpenAI 中的回應取代包含 Bug 的行，則可以執行 **sample-code** 中的 Go Fish 應用程式。 如果您在沒有修正的情況下執行，應用程式將無法正常運作。
-    
+
     > **注意**：請務必注意，即使此 Go Fish 應用程式的程式碼已針對某些語法進行修正，但並不是遊戲的嚴格精確表示法。 如果您仔細觀察，在繪製卡片時沒有檢查牌組是否空白，未於玩家得到配對時從玩家手中移除配對，以及一些其他需要了解卡片遊戲才能發現的錯誤。 這是一個很好的範例，說明實用的生成式 AI 模型如何協助產生程式碼，但無法信任為正確且需要由開發人員確認。
 
     如果您想要查看 Azure OpenAI 的完整回應，則可以將 **printFullResponse** 變數設定為 `True`，然後重新執行應用程式。

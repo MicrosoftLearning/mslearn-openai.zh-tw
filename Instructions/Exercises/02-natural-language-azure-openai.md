@@ -45,9 +45,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **備註**：當使用 Azure AI Foundry 入口網站時，可能會顯示建議您要執行工作的訊息方塊。 您可以關閉這些訊息，並依照本練習中的步驟進行。
 
 1. 在 Azure 入口網站，請到 Azure OpenAI 資源的**概觀**頁面，將畫面向下捲動到**入門**區段，然後選取按鈕，即可前往 **AI Foundry 入口網站** (之前稱為 AI Studio)。
-1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定建立 **gpt-35-turbo-16k** 模型的新部署：
+1. 在 Azure AI Foundry 入口網站的左側窗格，選取**部署**頁面，檢視現有的模型部署。 如果您還未擁有，請使用下列設定，為**gpt-4o**模型建立的新部署：
     - **部署名稱**：*您選擇的唯一名稱*
-    - **模型**：gpt-35-turbo-16k *(如果無法取得 16k 模型，請選擇 gpt-35-turbo)*
+    - **模型**：gpt-4o
     - **模型版本**：*使用預設版本*
     - **部署類型**：標準
     - **每分鐘權杖速率限制**：5K\*
@@ -63,7 +63,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 > **秘訣**：如果您已複製 **mslearn-openai** 存放庫，請在 Visual Studio Code 中開啟它。 否則，請遵循下列步驟將其複製到您的開發環境。
 
 1. 啟動 Visual Studio Code。
-2. 開啟選擇區 (SHIFT+CTRL+P) 並執行 **Git：複製 ** 命令，將 `https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾 (哪個資料夾無關緊要)。
+2. 開啟命令選擇區（SHIFT+CTRL+P 或 **View** > **命令選擇區...**），並執行 **Git: 複製** 命令，將`https://github.com/MicrosoftLearning/mslearn-openai` 存放庫複製到本機資料夾（哪個資料夾都無所謂）。
 3. 複製存放庫後，請在 Visual Studio Code 中開啟此資料夾。
 
     > **注意**：如果 Visual Studio Code 顯示快顯訊息，提示您信任您所開啟的程式碼，請按一下快顯項目中的 [是，我信任作者]**** 選項。
@@ -81,21 +81,21 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     **C#：**
 
-    ```
-    dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.14
+    ```powershell
+    dotnet add package Azure.AI.OpenAI --version 2.1.0
     ```
 
     **Python**：
 
-    ```
-    pip install openai==1.55.3
+    ```powershell
+    pip install openai==1.65.2
     ```
 
 3. 在 [總管]**** 窗格的 **CSharp** 或 **Python** 資料夾中，開啟使用者慣用的介面語言的設定檔
 
     - **C#**：appsettings.json
     - **Python**：.env
-    
+
 4. 更新設定值以包含：
     - 您所建立 Azure OpenAI 資源的**端點**和**金鑰** (可在 Azure 入口網站中 Azure OpenAI 資源的 [金鑰和端點]**** 頁面上取得)
     - 針對模型部署，您可以指定的**部署名稱** (可在 Azure AI Foundry 入口網站的 **[部署]** 頁面取得)。
@@ -110,12 +110,13 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     **C#**：Program.cs
 
     ```csharp
-    // Add Azure OpenAI package
+    // Add Azure OpenAI packages
     using Azure.AI.OpenAI;
+    using OpenAI.Chat;
     ```
-    
+
     **Python**：test-openai-model.py
-    
+
     ```python
     # Add Azure OpenAI package
     from openai import AzureOpenAI
@@ -127,7 +128,8 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     ```csharp
     // Initialize the Azure OpenAI client
-    OpenAIClient client = new OpenAIClient(new Uri(oaiEndpoint), new AzureKeyCredential(oaiKey));
+    AzureOpenAIClient azureClient = new (new Uri(oaiEndpoint), new ApiKeyCredential(oaiKey));
+    ChatClient chatClient = azureClient.GetChatClient(oaiDeploymentName);
     
     // System message to provide context to the model
     string systemMessage = "I am a hiking enthusiast named Forest who helps people discover hikes in their area. If no area is specified, I will default to near Rainier National Park. I will then provide three suggestions for nearby hikes that vary in length. I will also share an interesting fact about the local nature on the hikes when making a recommendation.";
@@ -151,31 +153,28 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
         """
     ```
 
-1. 以建置要求所需的程式碼取代註解***新增程式碼以傳送要求***；指定模型的各種參數，例如 `messages` 和 `temperature`。
+1. 以建置要求所需的程式碼取代註解***新增程式碼以傳送要求***；指定模型的各種參數，例如 `Temperature` 和 `MaxOutputTokenCount`。
 
     **C#**：Program.cs
 
     ```csharp
     // Add code to send request...
-    // Build completion options object
-    ChatCompletionsOptions chatCompletionsOptions = new ChatCompletionsOptions()
+    // Get response from Azure OpenAI
+    ChatCompletionOptions chatCompletionOptions = new ChatCompletionOptions()
     {
-        Messages =
-        {
-            new ChatRequestSystemMessage(systemMessage),
-            new ChatRequestUserMessage(inputText),
-        },
-        MaxTokens = 400,
         Temperature = 0.7f,
-        DeploymentName = oaiDeploymentName
+        MaxOutputTokenCount = 800
     };
 
-    // Send request to Azure OpenAI model
-    ChatCompletions response = client.GetChatCompletions(chatCompletionsOptions);
+    ChatCompletion completion = chatClient.CompleteChat(
+        [
+            new SystemChatMessage(systemMessage),
+            new UserChatMessage(inputText)
+        ],
+        chatCompletionOptions
+    );
 
-    // Print the response
-    string completion = response.Choices[0].Message.Content;
-    Console.WriteLine("Response: " + completion + "\n");
+    Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
     ```
 
     **Python**：test-openai-model.py
@@ -232,9 +231,9 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 
     ```csharp
     // Initialize messages list
-    var messagesList = new List<ChatRequestMessage>()
+    var messagesList = new List<ChatMessage>()
     {
-        new ChatRequestSystemMessage(systemMessage),
+        new SystemChatMessage(systemMessage),
     };
     ```
 
@@ -252,31 +251,26 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
     ```csharp
     // Add code to send request...
     // Build completion options object
-    messagesList.Add(new ChatRequestUserMessage(inputText));
+    messagesList.Add(new UserChatMessage(inputText));
 
-    ChatCompletionsOptions chatCompletionsOptions = new ChatCompletionsOptions()
+    ChatCompletionOptions chatCompletionOptions = new ChatCompletionOptions()
     {
-        MaxTokens = 1200,
         Temperature = 0.7f,
-        DeploymentName = oaiDeploymentName
+        MaxOutputTokenCount = 800
     };
 
-    // Add messages to the completion options
-    foreach (ChatRequestMessage chatMessage in messagesList)
-    {
-        chatCompletionsOptions.Messages.Add(chatMessage);
-    }
-
-    // Send request to Azure OpenAI model
-    ChatCompletions response = client.GetChatCompletions(chatCompletionsOptions);
+    ChatCompletion completion = chatClient.CompleteChat(
+        messagesList,
+        chatCompletionOptions
+    );
 
     // Return the response
-    string completion = response.Choices[0].Message.Content;
+    string response = completion.Content[0].Text;
 
     // Add generated text to messages list
-    messagesList.Add(new ChatRequestAssistantMessage(completion));
+    messagesList.Add(new AssistantChatMessage(response));
 
-    Console.WriteLine("Response: " + completion + "\n");
+    Console.WriteLine("Response: " + response + "\n");
     ```
 
     **Python**：test-openai-model.py
@@ -310,7 +304,7 @@ Azure 提供網頁入口網站，命名為 **Azure AI Foundry入口網站**，�
 1. 觀察輸出，然後提示 `How difficult is the second hike you suggested?`。
 1. 您可能會收到關於模型建議之第二次健行的回應，而且提供的對話更為務實。 您可以詢問參考先前答案的額外後續追蹤問題，而且每次記錄都會為模型提供回答問題的上下文。
 
-    > **秘訣**：權杖計數只會設定為 1200，因此如果交談持續太久，應用程式就會耗盡可用的權杖，導致提示不完整。 實際使用時，將記錄的長度限制為最新的輸入和回應，有助於控制所需的權杖數目。
+    > **提示**：輸出權杖次數只會設定為 800。因此，如果交談持續太久，應用程式就會用完可用權杖，導致提示不完整。 實際使用時，將記錄的長度限制為最新的輸入和回應，有助於控制所需的權杖數目。
 
 ## 清理
 
