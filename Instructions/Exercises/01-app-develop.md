@@ -33,15 +33,13 @@ lab:
     - **訂用帳戶**：*選取已核准存取 Azure OpenAI 服務的 Azure 訂用帳戶*
     - **資源群組**：*選擇或建立資源群組*
     - **區域**：*從以下任一區域中**隨機**選擇*\*
-        - 加拿大東部
         - 美國東部
         - 美國東部 2
-        - 法國中部
-        - 日本東部
         - 美國中北部
+        - 美國中南部
         - 瑞典中部
-        - 瑞士北部
-        - 英國南部
+        - 美國西部
+        - 美國西部 3
     - **名稱**：*您選擇的唯一名稱*
     - **定價層**:標準 S0
 
@@ -51,19 +49,25 @@ lab:
 
 ## 部署模型
 
-接著，您將從 CLI 部署 Azure OpenAI 模型資源。 只要參考本範例，就能用自己的資源值，取代下列變數：
+下一頁，您將可從 Cloud Shell 部署 Azure OpenAI 模型資源。
 
-```dotnetcli
-az cognitiveservices account deployment create \
-   -g <your_resource_group> \
-   -n <your_OpenAI_service> \
-   --deployment-name gpt-4o \
-   --model-name gpt-4o \
-   --model-version 2024-05-13 \
-   --model-format OpenAI \
-   --sku-name "Standard" \
-   --sku-capacity 5
-```
+1. 使用頁面上方搜尋欄右側的 [\>_]**** 按鈕，就能從 Azure 入口網站哪邊，建立新的 Cloud Shell，選擇 ***Bash*** 環境。 Cloud Shell 會在 Azure 入口網站底部的窗格顯示命令列介面。
+
+    > **備註**：如果您之前就已建立使用 *Bash* 環境的 Cloud Shell，請將原先的設定切換成 ***PowerShell***。
+
+1. 只要參考本範例，就能用自己的資源值，取代下列變數：
+
+    ```dotnetcli
+    az cognitiveservices account deployment create \
+       -g <your_resource_group> \
+       -n <your_OpenAI_service> \
+       --deployment-name gpt-4o \
+       --model-name gpt-4o \
+       --model-version 2024-05-13 \
+       --model-format OpenAI \
+       --sku-name "Standard" \
+       --sku-capacity 5
+    ```
 
 > **備註**：SKU 容量是以每分鐘數千個權杖來衡量標準。 每分鐘 5,000 個權杖的速率限制，就可以完成本練習，同時為其他使用相同訂閱的人，留下一點容量。
 
@@ -245,7 +249,7 @@ az cognitiveservices account deployment create \
     - Rescue name is Contoso 
     - It specializes in elephants, as well as zebras and giraffes 
     - Call for donations to be given at our website 
-    \n Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
+    Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
     ```
 
 1. 觀察輸出，查看電子郵件如何根據您的清晰指示變更。
@@ -264,7 +268,7 @@ az cognitiveservices account deployment create \
     - Rescue name is Contoso 
     - It specializes in elephants, as well as zebras and giraffes 
     - Call for donations to be given at our website 
-    \n Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
+    Include a list of the current animals we have at our rescue after the signature, in the form of a table. These animals include elephants, zebras, gorillas, lizards, and jackrabbits.
     ```
 
 1. 觀察輸出。 此時您可能會看到類似格式的電子郵件，但語調比較輕鬆隨性。 您甚至可能會看到內容包含笑話！
