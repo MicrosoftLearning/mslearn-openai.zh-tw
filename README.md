@@ -1,4 +1,6 @@
-# 使用 Azure OpenAI 開發 AI 解決方案
+**⚠️ This GitHub repo will retire on 28th November 2025.** 
+
+使用 Azure OpenAI 開發 AI 解決方案
 
 > **注意**：此存放庫正在封存，且不再維護。 請瀏覽[生成式 AI 應用程式](https://learn.microsoft.com/en-us/training/paths/create-custom-copilots-ai-studio/)學習路徑和[相關的實驗室存放庫](https://github.com/MicrosoftLearning/mslearn-ai-studio)，或 [Azure AI Foundry 文件](https://learn.microsoft.com/en-us/azure/ai-foundry/)
 
